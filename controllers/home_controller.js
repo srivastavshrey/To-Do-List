@@ -23,3 +23,15 @@ module.exports.store = function(req,res){
            return res.redirect('back');
        });
 }
+//controller to delete data
+module.exports.delete =  function(req, res){
+    console.log(req.query);
+    let id = req.query.id;
+    Task.findByIdAndDelete(id,function(err){
+        if(err){ console.log('Task does not exist');
+        return;}
+        
+    return res.redirect('back');
+    });
+  
+}

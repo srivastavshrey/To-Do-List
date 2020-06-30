@@ -11,24 +11,30 @@
         <form action="/create-task" method="POST">
             <input type="text" name="task" placeholder="Add Task" id="input1">
             <br>
-            <input type="date" name="date" placeholder="Due Date" id="input2">
-            <select name="type" >
+            <input type="date" name="date" placeholder="Due Date" id="input2"> 
+            <select name="type" id="input3" >
                 <option value="Personal">Personal</option>
                 <option value="Work">Work</option>
-                <option value="">Opel</option>
-                <option value="audi">Audi</option>
+                <option value="Office">Office</option>
+                <option value="Other">Other</option>
 
-            </select>
-            <button type="submit">Add Task</button>
+            </select><br>
+            <button type="submit" id="add-task">Add Task</button>
         </form>
+         
         <div id="task">
             <ul>
                 <% for( i of task_list){%>
                 <li>
-                    <p><%=i.task%></p>
-                    <p><%=i.date%></p>
-                    <p><%=i.type%></p>
+                    <p id="task-name"><%=i.task%></p>
+                    <p class="due-date">Due Date:&nbsp;<%=i.date%></p><br>
+                    <p class="due-date" id="due-date">Type:&nbsp;<%=i.type%></p>
                </li>
+               <div class="delete-button">
+                <a href="/delete-task/?id=<%= i._id %>">
+                    delete
+                </a>
+            </div>
                <%}%> 
             </ul>
         </div>

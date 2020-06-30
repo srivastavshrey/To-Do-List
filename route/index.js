@@ -7,4 +7,5 @@ router.use(express.urlencoded());
 router.use(express.static('assets'));
 router.get('/', homeController.home);//getting data from controller
 router.post('/create-task',homeController.store);
+router.get('/delete-task/',homeController.delete);
 module.exports = router;
