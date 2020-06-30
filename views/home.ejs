@@ -9,17 +9,21 @@
         <h1>To-Do List</h1>
        
         <form action="/create-task" method="POST">
+            <p>What do you want to do ?</p>
             <input type="text" name="task" placeholder="Add Task" id="input1">
             <br>
+            <p>Due Date</p>
             <input type="date" name="date" placeholder="Due Date" id="input2"> 
+            <br>
+            <p>Type</p>
             <select name="type" id="input3" >
                 <option value="Personal">Personal</option>
                 <option value="Work">Work</option>
                 <option value="Office">Office</option>
                 <option value="Other">Other</option>
 
-            </select><br>
-            <button type="submit" id="add-task">Add Task</button>
+            </select><br><br>
+            <button type="submit" id="add-task">+ Add Task</button>
         </form>
          
         <div id="task">
@@ -30,11 +34,11 @@
                     <p class="due-date">Due Date:&nbsp;<%=i.date%></p><br>
                     <p class="due-date" id="due-date">Type:&nbsp;<%=i.type%></p>
                </li>
-               <div class="delete-button">
+               <button class="delete-button">
                 <a href="/delete-task/?id=<%= i._id %>">
                     delete
                 </a>
-            </div>
+               </button>
                <%}%> 
             </ul>
         </div>
