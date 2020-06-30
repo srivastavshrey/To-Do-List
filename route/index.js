@@ -4,7 +4,7 @@ const homeController = require('../controllers/home_controller'); //accessing co
 const db = require('../config/mongoose');
 const Task = require('../models/task');
 router.use(express.urlencoded());
-router.use(express.static('../assets'));
+router.use(express.static('assets'));
 router.get('/', homeController.home);//getting data from controller
 router.post('/create-task',homeController.store);
 module.exports = router;
