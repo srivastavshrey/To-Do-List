@@ -3,19 +3,24 @@
         <title>
             To-Do List
         </title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
         <link rel="stylesheet" href="/css/home.css">
     </head>
     <body>
-        <h1>To-Do List</h1>
+        <h1 class="text-dark" id="heading"><span><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-list-task" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M2 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5H2zM3 3H2v1h1V3z"/>
+            <path d="M5 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM5.5 7a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 4a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9z"/>
+            <path fill-rule="evenodd" d="M1.5 7a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5V7zM2 7h1v1H2V7zm0 3.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5H2zm1 .5H2v1h1v-1z"/>
+          </svg></span>&ensp;To-do List</h1>
        
         <form action="/create-task" method="POST">
-            <p>What do you want to do ?</p>
+            <label for="input1">What do you want to do ?</label>
             <input type="text" name="task" placeholder="Add Task" id="input1">
             <br>
-            <p>Due Date</p>
+            <label for="input2">Due Date</label>
             <input type="date" name="date" placeholder="Due Date" id="input2"> 
             <br>
-            <p>Type</p>
+            <label for="input3">Type</label>
             <select name="type" id="input3" >
                 <option value="Personal">Personal</option>
                 <option value="Work">Work</option>
@@ -23,24 +28,32 @@
                 <option value="Other">Other</option>
 
             </select><br><br>
-            <button type="submit" id="add-task">+ Add Task</button>
+            <button type="submit" id="add-task" class="btn btn-dark text-light"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H4a.5.5 0 0 1 0-1h3.5V4a.5.5 0 0 1 .5-.5z"/>
+                <path fill-rule="evenodd" d="M7.5 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0V8z"/>
+                <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+              </svg>&nbsp;Add Task</button>
         </form>
-         
-        <div id="task">
-            <ul>
+         <br><br><br>
+        
                 <% for( i of task_list){%>
+                    <div id="task">
+                        <ul>
                 <li>
-                    <p id="task-name"><%=i.task%></p>
-                    <p class="due-date">Due Date:&nbsp;<%=i.date%></p><br>
-                    <p class="due-date" id="due-date">Type:&nbsp;<%=i.type%></p>
-               </li>
-               <button class="delete-button">
-                <a href="/delete-task/?id=<%= i._id %>">
-                    delete
+                    <p id="task-name"><b><%=i.task%></b></p><br>
+                    <p class="due-date"><span class="text-dark">Due Date:</span>&nbsp;<%=i.date%></p><br>
+                    <p class="due-date" id="due-date"><span class="text-dark">Type:</span><span class="text-light" id="type">&nbsp;<%=i.type%></span></p>
+               <button type="button" class="delete-button btn btn-danger">
+                <a class ="text-white" href="/delete-task/?id=<%= i._id %>">
+                    Delete
                 </a>
-               </button>
-               <%}%> 
+               </button></li><br><br>
             </ul>
         </div>
+               <%}%> 
+           <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
     </body>
 </html>
